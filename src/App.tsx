@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import profileImg from './assets/profile.jpg';
 
@@ -21,13 +21,14 @@ function App() {
     const toggleTheme = () => {
         setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
     };
+    
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
         try {
@@ -276,7 +277,7 @@ function App() {
                             <textarea
                                 name="feedback"
                                 placeholder="Write your feedback"
-                                rows="5"
+                                rows={5}
                                 value={formData.feedback}
                                 onChange={handleChange}
                                 required
