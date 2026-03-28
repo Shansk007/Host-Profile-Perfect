@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import profileImg from './assets/profile.jpg';
 
 function App() {
+    const [theme, setTheme] = useState('dark');
+
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -10,6 +12,15 @@ function App() {
     });
 
     const [message, setMessage] = useState('');
+
+    useEffect(() => {
+        document.body.classList.remove('dark', 'light');
+        document.body.classList.add(theme);
+    }, [theme]);
+
+    const toggleTheme = () => {
+        setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -57,6 +68,10 @@ function App() {
                         <a href="#certificates">Certificates</a>
                         <a href="#contact">Contact</a>
                     </nav>
+
+                    <button className="theme-toggle" onClick={toggleTheme}>
+                        {theme === 'dark' ? '☀️' : '🌙'}
+                    </button>
                 </div>
             </header>
 
@@ -226,7 +241,7 @@ function App() {
                         <div className="project-card hover-lift colorful-card">
                             <div className="project-top-line"></div>
                             <h3>Linux / DevOps</h3>
-                            <p></p>
+                            <p>Coming soon</p>
                         </div>
                     </div>
                 </section>
